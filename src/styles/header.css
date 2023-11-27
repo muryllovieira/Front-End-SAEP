@@ -1,0 +1,23 @@
+.header{
+    background-color: rgb(69, 69, 253);
+    height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.nome_professor{
+    color: aliceblue;
+}
+
+.sair{
+    font-size: 1.5rem;
+    color: aliceblue;
+    cursor: pointer;
+}
+
+.sair:hover{
+    color: brown;
+}
