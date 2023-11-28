@@ -13,11 +13,11 @@ const Lista = ({ dados, onVisualizar, onExcluir }) => {
       <tbody>
         {dados.map((item) => (
           <tr key={item.numero}>
-            <td>{item.numero}</td>
+            <td>{item.id}</td>
             <td>{item.nome}</td>
             <td>
               <button onClick={() => onVisualizar(item)}>Visualizar</button>
-              <button onClick={() => onExcluir(item.numero)}>Excluir</button>
+              <button onClick={() => onExcluir(item.id)}>Excluir</button>
             </td>
           </tr>
         ))}
