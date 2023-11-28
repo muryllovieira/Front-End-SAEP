@@ -5,8 +5,9 @@ import Header from '../components/Header';
 import axios from 'axios';  // Importe o axios
 import '../styles/turmas.css';
 
-const idProfessor = sessionStorage.getItem("idProfessor")
+
 const Turmas = () => {
+    const idProfessor = localStorage.getItem("idProfessor")
     const [dados, setDados] = useState([]);
     const [nomeProfessor, setNomeProfessor] = useState('');
     const [text, setText] = useState('')
@@ -23,7 +24,7 @@ const Turmas = () => {
                 let turmas = response.data.turmas;
                 let nomeProfessor = response.data.nome_professor;
                 setDados(turmas);
-                sessionStorage.setItem("nome", nomeProfessor)
+                localStorage.setItem("nome", nomeProfessor)
                 setNomeProfessor(response.data.nome_professor);
             })
             .catch(error => {
@@ -65,7 +66,7 @@ const Turmas = () => {
                 if (error) {
                     alert('Não pode apagar uma turma com atividade cadastrada.');
                     return;
-                  }
+                }
                 setSelectedItemId(null);
             });
     };
@@ -78,11 +79,12 @@ const Turmas = () => {
     const navigate = useNavigate();
 
     const handleVisualizar = (item) => {
-        sessionStorage.setItem("id_turma", item.id)
+
+        localStorage.setItem("id_turma", item.id)
         console.log(item.id);
         console.log('Visualizar:', item);
-        
-        navigate('/atividades');
+
+        navigate('/atividades',);
     };
 
     const handleTextChange = (event) => {
@@ -117,7 +119,9 @@ const Turmas = () => {
                     </button>
                 </div>
             </div>
-            <Lista dados={dados} onVisualizar={handleVisualizar} onExcluir={handleExcluir} />
+            <div className='lista_turmas'>
+                <Lista dados={dados} onVisualizar={handleVisualizar} onExcluir={handleExcluir} />
+            </div>
             {/* Modal de confirmação */}
             {selectedItemId !== null && (
                 <div className="modal">

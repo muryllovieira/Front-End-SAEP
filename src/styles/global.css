@@ -40,3 +40,29 @@ ul, li {
 .cadastrar_atividade:hover{
     background-color: rgb(31, 31, 255);;
 }
+
+.adicionar_atividades{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 1.1rem;
+    margin-bottom: 5px;
+}

@@ -6,11 +6,14 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/global.css';
 import axios from 'axios';
 
-const nomeProfessor = sessionStorage.getItem("nome");
-const idTurma = sessionStorage.getItem("id_turma");
-console.log(nomeProfessor);
+const nomeProfessor = localStorage.getItem("nome");
+
+// ... (importações e código anterior)
 
 function Atividades() {
+  const idTurma = localStorage.getItem("id_turma");
+  console.log(idTurma);
+
   const [dados, setDados] = useState([]);
   const [nome, setNome] = useState('');
   const [descricao, setDescricao] = useState('');
@@ -30,9 +33,9 @@ function Atividades() {
       })
       .catch(error => {
         console.error('Erro ao obter dados da API:', error);
- 
-        setDados([]); 
-        setNomeTurma(''); 
+
+        setDados([]);
+        setNomeTurma('');
       });
   };
 
@@ -75,11 +78,10 @@ function Atividades() {
       <div className="container">
         <p>Nome da Turma: {nomeTurma}</p>
         <h1>Atividades</h1>
-        {dados.length === 0 ? (
-          <p>Não há atividades cadastradas para esta turma.</p>
-        ) : (
+
+        <form onSubmit={(e) => handleSubmit(e)}>
           <div className='adicionar_atividades'>
-            <div>
+            <div className="form-group">
               <label htmlFor="nome">Nome:</label>
               <input
                 type="text"
@@ -90,7 +92,7 @@ function Atividades() {
                 required
               />
             </div>
-            <div>
+            <div className="form-group">
               <label htmlFor="descricao">Descrição:</label>
               <input
                 type="text"
@@ -102,12 +104,18 @@ function Atividades() {
               />
             </div>
           </div>
-        )}
+        </form>
+
         <button type="submit" className='cadastrar_atividade' onClick={handleCadastrarAtividades}>
           Cadastrar atividade
         </button>
+
+        {dados.length === 0 ? (
+          <p>Não há atividades cadastradas para esta turma.</p>
+        ) : (
+          <Tabela dados={dados} />
+        )}
       </div>
-      {dados.length > 0 && <Tabela dados={dados} />}
     </div>
   );
 }

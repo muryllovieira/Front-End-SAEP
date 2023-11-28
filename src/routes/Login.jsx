@@ -35,7 +35,7 @@ function Login() {
         let idProfessor = response.data.professor.id
         console.log(idProfessor);
         // Redirecionar para a página desejada (por exemplo, "/turmas")
-        sessionStorage.setItem("idProfessor", idProfessor)
+        localStorage.setItem("idProfessor", idProfessor)
         navigate('/turmas');
       } else {
         // Exibe mensagem de erro
